@@ -160,9 +160,54 @@ def main():
     if not check_ffmpeg():
         return
 
-    url = input("Enter YouTube URL: ")
-    audio_file = download_audio(url)
-    wav_file = convert_to_wav(audio_file)
+    print("🎥 Choose input method:")
+    print("1. YouTube URL")
+    print("2. Local audio file from 'inputs' folder")
+
+    choice = input("Enter 1 or 2: ").strip()
+
+    if choice == "1":
+        url = input("Enter YouTube URL: ")
+        audio_file = download_audio(url)
+        wav_file = convert_to_wav(audio_file)
+
+    elif choice == "2":
+        print("\nAvailable files in 'inputs/' folder:")
+        files = [f for f in os.listdir("inputs") if f.lower().endswith((".mp3", ".wav", ".mp4", ".mkv", ".mov"))]
+        if not files:
+            print("No audio files found in 'inputs' folder.")
+            return
+
+        for idx, file in enumerate(files, 1):
+            print(f"{idx}. {file}")
+        file_choice = input("Select a file number: ").strip()
+
+        try:
+            selected = files[int(file_choice) - 1]
+        except (ValueError, IndexError):
+            print("Invalid selection.")
+            return
+
+        input_path = os.path.join("inputs", selected)
+        audio_file = None
+
+        if selected.lower().endswith(".mp3"):
+            wav_file = convert_to_wav(input_path)
+            audio_file = input_path
+
+        elif selected.lower().endswith(".wav"):
+            wav_file = input_path  # Already WAV, use directly
+
+        else:
+            # Video file – extract audio using ffmpeg
+            wav_file = os.path.splitext(input_path)[0] + ".wav"
+            cmd = ['ffmpeg', '-y', '-i', input_path, '-acodec', 'pcm_s16le', '-ac', '1', '-ar', '16000', wav_file]
+            subprocess.run(cmd, check=True)
+
+
+    else:
+        print("Invalid choice.")
+        return
 
     print("\n🎙️ Transcribing...")
     transcript = transcribe_with_assemblyai(wav_file)
@@ -171,11 +216,25 @@ def main():
     structured_doc = process_with_claude(transcript)
     print("\n--- Claude Output ---\n", structured_doc[:800], "\n...\n")
 
+    # Save to docs/ folder
+    os.makedirs("docs", exist_ok=True)
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_path = os.path.join("docs", f"structured_doc_{timestamp}.json")
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(structured_doc)
+
+    print(f"✅ Structured document saved to: {output_path}")
+
     print("🔐 Creating embeddings and vector DB...")
     db = embed_document(structured_doc)
 
     run_chat(db)
-    cleanup([audio_file, wav_file])
+
+    if audio_file:
+        cleanup([audio_file, wav_file])
+    elif wav_file.endswith(".wav"):
+        cleanup([wav_file])
 
 if __name__ == "__main__":
     main()

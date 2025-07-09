@@ -1,0 +1,49 @@
+{
+  "Title": "How to Enroll in MNT Bank Online Banking Service",
+  "Objective": "Guide users through the process of enrolling in MNT Bank's online banking platform to access digital banking services",
+  "TargetAudience": "New MNT Bank customers who want to set up online banking access",
+  "KeyConcepts": [
+    "Online banking enrollment",
+    "Account verification",
+    "Digital banking services",
+    "Mobile app registration"
+  ],
+  "ToolsMentioned": [
+    "MNT Bank mobile app",
+    "Debit card",
+    "Social Security number"
+  ],
+  "StepByStepInstructions": [
+    {
+      "StepNumber": 1,
+      "Instruction": "Download and open the MNT Bank mobile app",
+      "Purpose": "Access the enrollment platform",
+      "Example": "Locate the MNT Bank app on your mobile device"
+    },
+    {
+      "StepNumber": 2,
+      "Instruction": "Tap the 'Enroll' button below the login section",
+      "Purpose": "Begin the registration process",
+      "Example": "Look for the enrollment option on the main login screen"
+    },
+    {
+      "StepNumber": 3,
+      "Instruction": "Select your account type",
+      "Purpose": "Specify the correct account category",
+      "Example": "Choose between Personal, Business, or Business and Personal account"
+    },
+    {
+      "StepNumber": 4,
+      "Instruction": "Enter required account information",
+      "Purpose": "Verify your identity and link to your bank account",
+      "Example": "Input your account number, Social Security number, date of birth, and debit card information"
+    },
+    {
+      "StepNumber": 5,
+      "Instruction": "Tap Continue and complete additional verification steps",
+      "Purpose": "Finalize the enrollment process",
+      "Example": "Follow any additional prompts to complete the registration"
+    }
+  ],
+  "ImportantNotes": "To enroll in online banking, you must already have an existing MNT Bank account. Have your account number, Social Security number, debit card, and personal information ready before starting the enrollment process. This service provides access to bill payments, transaction history, and other banking services 24/7 from any location."
+}
