@@ -1,16 +1,6 @@
 🎬 Enhanced Video QA with Reranker & Clip Extraction
 This repo allows you to run a question-answering (QA) pipeline on timestamped transcripts of videos, generate high-quality answers using Claude via AWS Bedrock, and extract supporting video clips from the relevant timestamp ranges.
 
-📂 Folder Structure
-
-.
-├── timestampsentence.py            # Step 1: Transcript generator
-├── enhanced_qa_with_reranker.py   # Step 2: QA engine with Claude & reranker
-├── clip_manager.py                # Video clip extraction logic
-├── inputs/                        # Raw video files (optional, default path)
-├── docs/                          # QA logs and debug metadata
-├── generated_clips/              # Output folder for final mp4 clips
-├── requirements.txt              # Python dependencies
 🧪 Quickstart
 1️⃣ Step 1: Transcribe the video
 Make sure your video file is in the root folder (or specify path inside the script).
