@@ -2,6 +2,7 @@
 This repo allows you to run a question-answering (QA) pipeline on timestamped transcripts of videos, generate high-quality answers using Claude via AWS Bedrock, and extract supporting video clips from the relevant timestamp ranges.
 
 🧪 Quickstart
+
 1️⃣ Step 1: Transcribe the video
 Make sure your video file is in the root folder (or specify path inside the script).
 
