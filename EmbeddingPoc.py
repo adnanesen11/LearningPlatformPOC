@@ -94,7 +94,7 @@ Transcript:
         "messages": [
             {"role": "user", "content": system_prompt + transcript}
         ],
-        "max_tokens": 2048,
+        "max_tokens": 20000,
         "temperature": 0,
         "anthropic_version": "bedrock-2023-05-31"
     }
